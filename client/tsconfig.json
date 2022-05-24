@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    // files
+    "outDir": "./build",
+
+    // project
+    "target": "ESNEXT",
+    "allowJs": true,
+    "checkJs": true,
+    "module": "ESNext",
+
+    // related to react
+    "jsx": "preserve",
+    "allowSyntheticDefaultImports": true,
+
+    // module and module resolution
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "components/*": ["./src/components/*"]
+    },
+
+    // linter checks
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+
+    //Strict Type checking
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true
+    // Following one flag is equivalent of the four above
+    /*"strict": true*/
+  },
+  "include": ["./src/"],
+  "exclude": ["node_modules"]
+}
