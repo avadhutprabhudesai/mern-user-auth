@@ -3,6 +3,7 @@ const path = require('path');
 const https = require('https');
 require('dotenv').config();
 const app = require('./app');
+const { initDatabase } = require('./services/mongo');
 
 const server = https.createServer(
   {
@@ -15,6 +16,7 @@ const server = https.createServer(
 const PORT = process.env.PORT || 5000;
 
 async function startServer() {
+  await initDatabase();
   await server.listen(PORT, () => {
     console.log(`Worker listening on ${PORT}`);
   });

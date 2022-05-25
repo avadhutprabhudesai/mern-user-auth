@@ -4,14 +4,15 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const cors = require('cors');
 const expressSessionRouter = require('./routes/express-session');
+const passportLocalRouter = require('./routes/passport-local-auth');
 require('dotenv').config();
-const app = express();
 
 /**
  * ===================================
  *    Middlewares
  * ===================================
  */
+const app = express();
 
 app.use(helmet());
 app.use(express.json());
@@ -25,7 +26,8 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
  * ===================================
  */
 
-app.use('/express-session', expressSessionRouter);
+app.use('/session', expressSessionRouter);
+app.use('/local', passportLocalRouter);
 
 /**
  * ===================================
