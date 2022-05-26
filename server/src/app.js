@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const expressSessionRouter = require('./routes/express-session');
 const passportLocalRouter = require('./routes/passport-local-auth');
+const passportJWTRouter = require('./routes/passport-jwt-auth');
 require('dotenv').config();
 
 /**
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.use('/session', expressSessionRouter);
 app.use('/local', passportLocalRouter);
+app.use('/jwt', passportJWTRouter);
 
 /**
  * ===================================
