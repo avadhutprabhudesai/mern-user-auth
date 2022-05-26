@@ -4,8 +4,9 @@ const session = require('express-session');
 const passport = require('passport');
 const sessionOptions = require('../config/session');
 const User = require('../model/User');
-const { generateHash } = require('../services/password');
-require('../config/passport');
+const { generateHash } = require('../services/utils');
+
+require('../config/passport-local-config');
 
 const passportLocalRouter = express.Router();
 

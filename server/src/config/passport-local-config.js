@@ -1,8 +1,7 @@
-const { timingSafeEqual } = require('crypto');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('../model/User');
-const { generateHash } = require('../services/password');
+const { verifyPassword } = require('../services/utils');
 
 passport.use(
   new LocalStrategy(async function verify(username, password, done) {
@@ -11,13 +10,7 @@ passport.use(
       if (!user) {
         done(null, false);
       }
-      const [, derivedHash] = generateHash(password, user.salt);
-      if (
-        timingSafeEqual(
-          Buffer.from(user.hash, 'hex'),
-          Buffer.from(derivedHash, 'hex')
-        )
-      ) {
+      if (verifyPassword(password, user.salt, user.hash)) {
         done(null, user);
       }
     } catch (error) {
