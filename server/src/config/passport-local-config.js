@@ -8,7 +8,7 @@ passport.use(
     try {
       const user = await User.findOne({ username });
       if (!user) {
-        done(null, false);
+        return done(null, false);
       }
       if (verifyPassword(password, user.salt, user.hash)) {
         done(null, user);
@@ -19,6 +19,7 @@ passport.use(
     }
   })
 );
+
 passport.serializeUser((user, done) => {
   done(null, user._id);
 });

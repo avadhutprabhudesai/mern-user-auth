@@ -4,8 +4,6 @@ const User = require('../model/User');
 const { issueJWT, generateHash, verifyPassword } = require('../services/utils');
 const { randomBytes } = require('crypto');
 
-require('../config/passport-jwt-config');
-
 const passportJWTRouter = express.Router();
 passportJWTRouter.use(passport.initialize());
 
@@ -61,5 +59,10 @@ passportJWTRouter.get(
     res.status(200).send('You have been authorized');
   }
 );
+passportJWTRouter.get('/logout', (req, res) => {
+  req.logOut(() => {
+    return res.status(200).send('Successfully logged out');
+  });
+});
 
 module.exports = passportJWTRouter;

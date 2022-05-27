@@ -24,7 +24,7 @@ function issueJWT(user) {
     sub: user._id,
     iat: Date.now(),
   };
-  const expiresIn = '1d';
+  const expiresIn = 3000;
   const options = {
     algorithm: 'RS256',
     expiresIn: expiresIn,

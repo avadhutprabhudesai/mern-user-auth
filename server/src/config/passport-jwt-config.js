@@ -21,11 +21,10 @@ passport.use(
     try {
       const user = await User.findById(payload.sub);
       if (!user) {
-        done(null, false);
+        return done(null, false);
       }
       done(null, user);
     } catch (error) {
-      console.log(error);
       done(error);
     }
   })
