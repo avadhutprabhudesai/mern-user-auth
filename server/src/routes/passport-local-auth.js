@@ -6,8 +6,6 @@ const sessionOptions = require('../config/session');
 const User = require('../model/User');
 const { generateHash } = require('../services/utils');
 
-require('../config/passport-local-config');
-
 const passportLocalRouter = express.Router();
 
 /**
@@ -45,9 +43,6 @@ passportLocalRouter.post('/register', async (req, res, next) => {
   }
 });
 
-/**
- * TODO: /login route which has a passport-local auth middleware
- */
 passportLocalRouter.post(
   '/login',
   passport.authenticate('local', {

@@ -22,9 +22,9 @@ function verifyPassword(password, salt, hash) {
 function issueJWT(user) {
   const payload = {
     sub: user._id,
-    iat: Date.now(),
+    iat: Math.floor(Date.now / 1000),
   };
-  const expiresIn = '1d';
+  const expiresIn = 2;
   const options = {
     algorithm: 'RS256',
     expiresIn: expiresIn,
